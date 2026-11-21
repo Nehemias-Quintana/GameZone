@@ -1,0 +1,304 @@
+
+// ==========================================
+// 1. VARIABLES DE SASS
+// ==========================================
+
+$color-fondo: #0b1020;
+$color-superficie: #151d33;
+$color-texto: #f4f7ff;
+$color-secundario: #aeb8d0;
+$color-cian: #35d9f2;
+$color-violeta: #8b5cf6;
+$color-borde: rgba(255, 255, 255, 0.10);
+
+$transicion: 0.25s ease;
+
+
+// ==========================================
+// 2. MIXIN PARA BOTONES
+// ==========================================
+
+@mixin boton-neon($color) {
+  border: 1px solid $color;
+  color: $color;
+  transition: all $transicion;
+
+  &:hover {
+    background-color: $color;
+    color: $color-fondo;
+    box-shadow: 0 0 16px rgba($color, 0.35);
+  }
+}
+
+
+// ==========================================
+// 3. ESTILOS REUTILIZABLES
+// ==========================================
+
+%panel {
+  background-color: $color-superficie;
+  border: 1px solid $color-borde;
+  border-radius: 18px;
+}
+
+
+// ==========================================
+// 4. ESTILOS GENERALES
+// ==========================================
+
+body {
+  background-color: $color-fondo;
+  color: $color-texto;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+// ==========================================
+// 5. BARRA DE NAVEGACIÓN
+// ==========================================
+
+.site-navbar {
+  background-color: $color-fondo;
+  border-bottom: 1px solid $color-borde;
+
+  .navbar-brand {
+    color: $color-cian;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-link {
+    color: $color-secundario;
+    transition: color $transicion;
+
+    &:hover {
+      color: $color-cian;
+    }
+  }
+}
+
+
+// ==========================================
+// 6. PRESENTACIÓN PRINCIPAL
+// ==========================================
+
+.hero-section {
+  padding: 6rem 1rem;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba($color-violeta, 0.24),
+      transparent 55%
+    ),
+    linear-gradient(135deg, #0b1020, #111a31);
+
+  .hero-subtitle {
+    color: $color-cian;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+
+  h1 {
+    max-width: 850px;
+    margin: 0 auto 1rem;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+  }
+
+  .hero-description {
+    max-width: 650px;
+    margin: 0 auto 2rem;
+    color: $color-secundario;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    background-color: $color-violeta;
+    border-color: $color-violeta;
+    color: $color-texto;
+    padding: 0.8rem 1.4rem;
+    font-weight: bold;
+
+    &:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+
+// ==========================================
+// 7. TÍTULOS Y FILTROS
+// ==========================================
+
+.section-subtitle {
+  color: $color-cian;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#catalogo {
+  h2 {
+    font-weight: bold;
+  }
+}
+
+.filter-container {
+  .filter-btn {
+    @include boton-neon($color-cian);
+
+    &.active {
+      background-color: $color-cian;
+      color: $color-fondo;
+    }
+  }
+}
+
+
+// ==========================================
+// 8. TARJETAS DE VIDEOJUEGOS
+// ==========================================
+
+.game-card {
+  @extend %panel;
+
+  color: $color-texto;
+  overflow: hidden;
+  transition: transform $transicion, box-shadow $transicion;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  }
+
+  .card-body {
+    background-color: $color-superficie;
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    color: $color-texto;
+    font-weight: bold;
+  }
+
+  .card-text {
+    color: $color-secundario;
+    line-height: 1.6;
+  }
+
+  .btn-details {
+    @include boton-neon($color-cian);
+  }
+}
+
+
+// ==========================================
+// 9. PORTADAS DE VIDEOJUEGOS
+// ==========================================
+
+.game-cover {
+  min-height: 190px;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+  background-size: cover;
+  background-position: center;
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+  }
+}
+
+.cover-minecraft {
+  background: linear-gradient(135deg, #4d8c55, #1f3b35);
+}
+
+.cover-hollow {
+  background: linear-gradient(135deg, #413c78, #111827);
+}
+
+.cover-forza {
+  background: linear-gradient(135deg, #d97735, #713b9c);
+}
+
+
+// ==========================================
+// 10. INFORMACIÓN DEL VIDEOJUEGO
+// ==========================================
+
+#detalle-juego {
+  background-color: rgba($color-cian, 0.08);
+  border-color: rgba($color-cian, 0.25);
+  color: $color-texto;
+
+  h3 {
+    color: $color-cian;
+  }
+
+  p {
+    color: $color-secundario;
+  }
+}
+
+
+// ==========================================
+// 11. SECCIÓN ACERCA DE
+// ==========================================
+
+.about-section {
+  @extend %panel;
+
+  h2 {
+    color: $color-cian;
+    font-weight: bold;
+  }
+
+  p {
+    max-width: 700px;
+    margin: 1rem auto 0;
+    color: $color-secundario;
+    line-height: 1.7;
+  }
+}
+
+
+// ==========================================
+// 12. PIE DE PÁGINA
+// ==========================================
+
+.site-footer {
+  background-color: $color-fondo;
+  border-top: 1px solid $color-borde;
+  color: $color-secundario;
+}
+
+
+// ==========================================
+// 13. ADAPTACIÓN A CELULARES
+// ==========================================
+
+@media (max-width: 576px) {
+
+  .hero-section {
+    padding: 4rem 1rem;
+  }
+
+  .hero-section .hero-description {
+    font-size: 1rem;
+  }
+
+  .game-cover {
+    min-height: 160px;
+  }
+
+}
